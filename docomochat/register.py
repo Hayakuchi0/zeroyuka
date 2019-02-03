@@ -15,4 +15,9 @@ def register():
         data=json.dumps(reqbody),
         headers=header
     )
-    return response.json()['appId']
+    if response.status_code is 200:
+        return response.json()['appId']
+    else:
+        print("error occurd(status code:"+str(response.status_code)+")")
+        print(json.dumps(response.json()))
+        response.raise_for_status()

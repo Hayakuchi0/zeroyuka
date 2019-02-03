@@ -28,5 +28,10 @@ def talk(text, user):
         headers=header
     )
     resjson = response.json()
-    recvuser(getconfigpathuser(), user)
-    return resjson['systemText']['expression']
+    if response.status_code is 200:
+        recvuser(getconfigpathuser(), user)
+        return resjson['systemText']['expression']
+    else:
+        print("error occurd(status code:"+str(response.status_code)+")")
+        print(dumps(resjson))
+        response.raise_for_status()
