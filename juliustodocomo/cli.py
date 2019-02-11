@@ -16,5 +16,6 @@ class JuliusClientCLI(JuliusClientDC):
         text = ""
         while text is not "q":
             text = input()
-            print("####talk end####")
-            self.exit()
+            if text is "q":
+                print("####talk end####")
+                self.exit()
